@@ -1,2 +1,2 @@
 # React_Work
-I have created this Repo for my react work
+I have created this Repository for my React work

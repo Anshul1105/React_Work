@@ -1,0 +1,22 @@
+body {
+    background-color: pink;
+
+}
+h1 {
+    font-weight: 700;
+    font-size: 50px;
+    margin: 10px;
+}
+input{
+    width: 100%;
+
+}
+.item_container{
+    text-align: left;
+}
+.kg_row{
+    margin: 7px;
+}
+.kg_button{
+    min-width: 100px;
+}

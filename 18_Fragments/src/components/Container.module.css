@@ -1,0 +1,9 @@
+.Container{
+    background-color: aqua;
+    border: 2px solid balck;
+    margin: 15px;
+    width: 50%;
+    border-radius: 5px;
+    min-width: 400px;
+    padding: 10px;
+}

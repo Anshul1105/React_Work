@@ -1,53 +1,71 @@
 import { useState, useRef } from "react";
 import { IoMdAddCircle } from "react-icons/io";
+import { useContext } from "react";
+import { TodoItemsContext } from "../store/toto-items-store";
 
 
 function AddTodo({ onNewItem }) {
 
+  const { addNewItem } = useContext(TodoItemsContext);
   const [task, setTask] = useState("");
   const [date, setDate] = useState("");
-  const todoTaskElement = useRef();
-  const todoDateElement = useRef();
 
-  // const handleTaskChange = (event) => {
-  //   setTask(event.target.value);
-  //   noOfUpdates.current+=1;
 
+
+  // const handleAddBtnClicked = (event) => {
+  //   event.preventDefault();
+  //   const todoTask = todoTaskElement.current.value;
+  //   const todoDate = todoDateElement.current.value;
+  //   console.log(`${todoTask} task is due on: ${todoDate}`)
+  //   onNewItem(todoTask, todoDate);
+  //   todoTaskElement.current.value="";
+  //   todoDateElement.current.value="";
+  //   // setDate("");
+  //   // setTask("");
   // }
-  // const handleDateChange = (event) => {
-  //   setDate(event.target.value);
-  //   console.log(noOfUpdates.current);
-  // }
+  const handleNameChange = (event) => {
+    setTask(event.target.value);
+  };
 
-  const handleAddBtnClicked = (event) => {
-    event.preventDefault();
-    const todoTask = todoTaskElement.current.value;
-    const todoDate = todoDateElement.current.value;
-    console.log(`${todoTask} task is due on: ${todoDate}`)
-    onNewItem(todoTask, todoDate);
-    todoTaskElement.current.value="";
-    todoDateElement.current.value="";
-    // setDate("");
-    // setTask("");
-  }
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
+  const handleAddButtonClicked = () => {
+    addNewItem(task, date);
+    setDate("");
+    setTask("");
+  };
 
 
   return (<div className="container text-center">
-    <form className="row kg_row" onSubmit={handleAddBtnClicked}>
+    <div className="row kg_row">
 
       <div className="col-6">
-        <input type="text" ref={todoTaskElement} placeholder="Enter your task" />
+        <input 
+        type="text" 
+        placeholder="Enter your task" 
+        value={task}
+        onChange={handleNameChange}/>
+        
       </div>
       <div className="col-4">
-        <input type="date" ref={todoDateElement} placeholder="Enter deadline" />
+        <input type="date"  
+        placeholder="Enter deadline"
+        value={date}
+        onChange={handleDateChange} />
+        
       </div>
       <div className="col-2">
-        <button type="submit" className="btn btn-success kg_button"
+        <button 
+        type="button" 
+        className="btn btn-success kg_button"
+        onClick={handleAddButtonClicked}
         >
           Add  <IoMdAddCircle /></button>
       </div>
 
-    </form>
+    </div>
   </div>
   )
 }
